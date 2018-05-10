@@ -3,6 +3,8 @@ import log from '../../../../../../common/log';
 
 import { encryptSession, decryptSession } from './crypto';
 
+const DEBUG_SESSIONS = false;
+
 export const createSession = req => {
   const session = writeSession(req, { csrfToken: crypto.randomBytes(16).toString('hex') });
   return session;
@@ -13,7 +15,7 @@ export const readSession = req => {
   if (req.headers.session) {
     session = decryptSession(req.headers.session);
   }
-  if (__DEV__) {
+  if (__DEV__ && DEBUG_SESSIONS) {
     log.debug('read session', session);
   }
   return session;
