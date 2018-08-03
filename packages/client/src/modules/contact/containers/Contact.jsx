@@ -56,5 +56,6 @@ export default compose(
         }
       }
     })
-  })
-)(translate('contact')(Contact));
+  }),
+  translate('contact')
+)(Contact);
